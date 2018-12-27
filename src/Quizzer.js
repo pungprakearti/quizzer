@@ -1,34 +1,61 @@
 import React, { Component } from 'react';
 import QuizHeader from './QuizHeader';
 import Quiz from './Quiz';
-import uuid from 'uuid/v4';
+import parseQuestions from './parseQuestions';
+import QuizFooter from './QuizFooter';
+import { Stats } from 'fs';
 
 export default class Quizzer extends Component {
   constructor(props) {
     super(props);
-
-    this.ids = [uuid()];
-    this.state = {
-      questions: {
-        [this.ids[0]]: {
-          JavaScript: {
-            q: 'What is the difference between map and filter?',
-            a:
-              '.map() runs a callback on each item and returns a new array with said items. ' +
-              '.filter() returns an array of the same or smaller length based on a callback that' +
-              'evaluates to a boolean.',
-            priority: 0
-          }
-        }
-      }
-    };
+    this.questions = {};
+    this.qQrder = [];
+    this.qNum = 0;
+    this.wrongList = [];
+    this.state = { loading: true };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    //if questions in localstorage, set state to that. Else use the defaults
-    console.log(this.state);
+    //get questions and give them uuid's.
+    this.questions = parseQuestions();
+
+    //uuids are random, so sorting the keys gives a random order to questions
+    this.qOrder = Object.keys(this.questions).sort();
+
+    this.setState({ loading: false });
   }
+
+  handleClick(evt, id) {
+    evt.preventDefault();
+    if (evt.target.name === 'wrong') {
+      this.wrongList.push(id);
+    }
+    this.qNum++;
+  }
+
   render() {
-    return JSON.stringify(this.state.questions);
+    if (!this.state.loading) {
+      let question = this.questions[this.qOrder[this.qNum]];
+      console.log(
+        'this.qNum is: ',
+        this.qNum,
+        ' this.questions.length is: ',
+        this.qOrder.length
+      );
+      return this.qNum <= this.qOrder.length ? (
+        <Quiz
+          question={question}
+          category={question.category}
+          handleClick={this.handleClick}
+          numRemaining={`${this.qNum + 1} / ${this.qOrder.length}`}
+        />
+      ) : (
+        <Stats />
+      );
+    } else {
+      console.log('loading');
+      return 'Loading';
+    }
   }
 }

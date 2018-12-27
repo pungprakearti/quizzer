@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 export default class QuizHeader extends Component {
   render() {
-    return 'QuizHeader';
+    return (
+      <div>
+        {this.props.category}
+        <br />
+        {this.props.numRemaining}
+      </div>
+    );
   }
 }
