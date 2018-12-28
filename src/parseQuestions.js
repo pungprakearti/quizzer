@@ -1,4 +1,4 @@
-const uuid = require('uuid/v4');
+// const uuid = require('uuid/v4');
 
 const questionsText = `#JavaScript
 What is the difference between map and filter?
@@ -268,6 +268,7 @@ export default function parseQuestions() {
   const qArray = questionsText.split('\n');
   let questions = {};
   let currCat = ''; //current category while reading through text
+  let keyIncrement = {};
   let getQuestion = true; //get question or answer
   let q = '';
   let a = '';
@@ -293,7 +294,14 @@ export default function parseQuestions() {
     }
     //form an entry into questions
     if (q && a) {
-      questions = { ...questions, [uuid()]: { q, a, category: currCat } };
+      //
+      //create key for entry using category
+      if (!keyIncrement[currCat]) keyIncrement[currCat] = 1;
+      else keyIncrement[currCat]++;
+      questions = {
+        ...questions,
+        [`${currCat}-${keyIncrement[currCat]}`]: { q, a, category: currCat }
+      };
       q = '';
       a = '';
     }
