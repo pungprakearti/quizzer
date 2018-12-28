@@ -308,3 +308,22 @@ export default function parseQuestions() {
   }
   return questions;
 }
+
+/* returns a new shuffled array */
+export function shuffle(arr) {
+  let shuffledArr = [];
+  let randIndex = 0;
+
+  while (arr.length > 0) {
+    //
+    //get a random int within the array
+    randIndex = Math.floor(Math.random() * arr.length);
+
+    //add random array entry to new array
+    shuffledArr.push(arr[randIndex]);
+
+    //remove entry from original array
+    arr.splice(randIndex, 1);
+  }
+  return shuffledArr;
+}

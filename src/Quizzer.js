@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import QuizHeader from './QuizHeader';
 import Quiz from './Quiz';
-import parseQuestions from './parseQuestions';
-import QuizFooter from './QuizFooter';
+import parseQuestions, { shuffle } from './parseQuestions';
+// import QuizHeader from './QuizHeader';
+// import QuizFooter from './QuizFooter';
 import { Stats } from 'fs';
 
 export default class Quizzer extends Component {
@@ -17,11 +17,11 @@ export default class Quizzer extends Component {
   }
 
   componentDidMount() {
-    //get questions and give them uuid's.
+    //create POJO from questions data
     this.questions = parseQuestions();
 
-    //uuids are random, so sorting the keys gives a random order to questions
-    this.qOrder = Object.keys(this.questions).sort();
+    //shuffle keys and store
+    this.qOrder = shuffle(Object.keys(this.questions));
 
     this.setState({ loading: false });
   }

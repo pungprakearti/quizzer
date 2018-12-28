@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import QuizHeader from './QuizHeader';
 import QuizFooter from './QuizFooter';
-import './Quiz.css';
 
 export default class Quiz extends Component {
   constructor(props) {
