@@ -127,19 +127,19 @@ What does the Context API provide?
 The Context API provides a way to avoid prop drilling without the overhead of Redux.
 
 What are the two arguments for setState?
-object/function, function.
+object / function, function.
 
 What is “mounting” and when does a component mount?
 Mounting is when a component is placed into the DOM. A component is mounted when it is first rendered.
 
 What lifecycle method decides whether the render function should run on a component?
-shouldComponentUpdate.
+should Component Update.
 
 In order, list the three commonly used lifecycle methods when mounting a component.
-constructor(), render(), componentDidMount().
+constructor(), render(), component Did Mount().
 
 What’s a PureComponent? When should you use them?
-A component that has shouldComponentUpdate implemented for you. Use them when you are ok with a shallow check for re-render.
+A component that has should Component Update implemented for you. Use them when you are ok with a shallow check for re-render.
 
 Describe when and why you would need to provide keys={...}.
 When you iterate.
@@ -151,9 +151,9 @@ What part of the MVC pattern does React implement?
 The View.
 
 List three lifecycle methods used in React. 
-componentDidMount, componentDidUpdate, componentWillUnmount, shouldComponentUpdate.
+component Did Mount, component Did Update, component Will Unmount, should Component Update.
 
-How do you pass data from two separate Components if the are not in a Parent/Child relationship? What needs to be updated for dynamic updates to take effect?
+How do you pass data from two separate Components if the are not in a Parent / Child relationship? What needs to be updated for dynamic updates to take effect?
 Using Redux or Context or by lifting the state up
 
 What are the differences between state and props?
@@ -173,7 +173,7 @@ Define a thunk.
 A function that wraps an expression to delay it’s execution.
 
 What are the two arguments for connect()? What does it return?
-mapStateToProps, mapDispatchToProps, it returns a function.
+map State To Props, map Dispatch To Props, it returns a function.
 
 What is Redux good for?
 Managing global state in a large application and using more robust debugging / time traveling, customization.
@@ -184,7 +184,7 @@ Accepts a prop of store and wraps an application so that the App knows what stor
 What is an action?
 An object with a key of type.
 
-#Data Structures / Algorithms
+#Data Structures
 What common operation has a different runtime for Singly Linked Lists and Doubly Linked Lists?
 .pop()
 
@@ -208,7 +208,7 @@ A value that’s hashed: no false positives, but false negatives.
 
 #CSS
 Should you use tables for layout?
-http://shouldiusetablesforlayout.com/
+NOOOOOOOO!!!
 
 Explain the difference between .foo.bar and .foo .bar.
 First one selects an element with a class of foo and bar, second selects elements with a class of .bar inside of elements with a class of .foo.
@@ -254,7 +254,7 @@ What is a virtualenv?
 A wrapper used to create an isolated environment for Python projects.
 
 #Flask
-What some differences between Flask and Django?
+What are some differences between Flask and Django?
 Flask is a smaller bare bones framework while Django is more all inclusive.
 
 What’s an ORM? Which one have we used?

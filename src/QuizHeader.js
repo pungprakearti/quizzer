@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import './QuizHeader.css';
 
 export default class QuizHeader extends Component {
   render() {
     return (
-      <div>
-        {this.props.category}
-        <br />
-        {this.props.numRemaining}
+      <div className="QuizHeader-cont">
+        <div className="QuizHeader-numRemaining">{this.props.numRemaining}</div>
+        <div className="QuizHeader-category">{this.props.category}</div>
       </div>
     );
   }

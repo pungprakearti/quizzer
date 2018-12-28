@@ -12,8 +12,8 @@ export default class Quizzer extends Component {
     this.qQrder = [];
     this.qNum = 0;
     this.wrongList = [];
-    this.state = { loading: true };
-    this.handleClick = this.handleClick.bind(this);
+    this.state = { loading: true, qNum: 0 };
+    this.nextQuestion = this.nextQuestion.bind(this);
   }
 
   componentDidMount() {
@@ -26,32 +26,27 @@ export default class Quizzer extends Component {
     this.setState({ loading: false });
   }
 
-  handleClick(evt, id) {
-    evt.preventDefault();
-    if (evt.target.name === 'wrong') {
-      this.wrongList.push(id);
-    }
-    this.qNum++;
+  nextQuestion() {
+    this.setState(st => ({ qNum: st.qNum + 1 }));
   }
 
   render() {
     if (!this.state.loading) {
-      let question = this.questions[this.qOrder[this.qNum]];
-      console.log(
-        'this.qNum is: ',
-        this.qNum,
-        ' this.questions.length is: ',
-        this.qOrder.length
-      );
+      let question = this.questions[this.qOrder[this.state.qNum]];
+
       return this.qNum <= this.qOrder.length ? (
-        <Quiz
-          question={question}
-          category={question.category}
-          handleClick={this.handleClick}
-          numRemaining={`${this.qNum + 1} / ${this.qOrder.length}`}
-        />
+        <div className="Mobile-cont">
+          <Quiz
+            question={question}
+            category={question.category}
+            nextQuestion={this.nextQuestion}
+            numRemaining={`${this.state.qNum + 1} / ${this.qOrder.length}`}
+          />
+        </div>
       ) : (
-        <Stats />
+        <div className="Mobile-cont">
+          <Stats />
+        </div>
       );
     } else {
       console.log('loading');
