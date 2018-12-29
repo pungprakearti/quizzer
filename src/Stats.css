@@ -1,0 +1,22 @@
+.Stats-cont {
+  overflow: hidden;
+  box-sizing: border-box;
+  height: calc(100vh - 40px);
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100vw;
+}
+
+.Stats-review-cont {
+  border-left: 5px solid rgb(24, 68, 122);
+  border-right: 5px solid rgb(24, 68, 122);
+  height: calc(100vh - 170px);
+  max-height: 815px;
+  box-sizing: border-box;
+  max-width: 397px;
+  width: calc(100vw - 40px);
+  background-color: rgb(16, 16, 16);
+  font-size: 24px;
+  padding: 10px;
+  overflow-y: auto;
+}
