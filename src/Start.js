@@ -86,33 +86,35 @@ export default class Start extends Component {
         {this.state.show === 'start' ? (
           <div className="Start-cont">
             <div className="Start-header">Web Development Quizzer</div>
-            <div
-              className="Start-btn"
-              style={{ backgroundColor: 'rgb(48, 108, 103)' }}
-              onClick={this.handleClick}
-            >
-              quick
-            </div>
-            <div
-              className="Start-btn"
-              style={{ backgroundColor: 'rgb(39, 133, 170)' }}
-              onClick={this.handleClick}
-            >
-              half
-            </div>
-            <div
-              className="Start-btn"
-              style={{ backgroundColor: 'rgb(103, 84, 160)' }}
-              onClick={this.handleClick}
-            >
-              full
-            </div>
-            <div
-              className="Start-btn"
-              style={{ backgroundColor: 'rgb(150, 105, 66)' }}
-              onClick={this.handleClick}
-            >
-              summary
+            <div className="Start-btn-cont">
+              <div
+                className="Start-btn"
+                style={{ backgroundColor: 'rgb(48, 108, 103)' }}
+                onClick={this.handleClick}
+              >
+                quick
+              </div>
+              <div
+                className="Start-btn"
+                style={{ backgroundColor: 'rgb(39, 133, 170)' }}
+                onClick={this.handleClick}
+              >
+                half
+              </div>
+              <div
+                className="Start-btn"
+                style={{ backgroundColor: 'rgb(103, 84, 160)' }}
+                onClick={this.handleClick}
+              >
+                full
+              </div>
+              <div
+                className="Start-btn"
+                style={{ backgroundColor: 'rgb(150, 105, 66)' }}
+                onClick={this.handleClick}
+              >
+                summary
+              </div>
             </div>
             <div className="Start-footer">
               <a href="https://github.com/pungprakearti/quizzer">github repo</a>
