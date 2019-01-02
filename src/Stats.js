@@ -42,8 +42,10 @@ export default class Stats extends Component {
   }
 
   render() {
+    console.log(this.props);
     let questions = this.sortQuestions();
-    let total = Object.keys(this.props.questions).length;
+    // let total = Object.keys(this.props.questions).length;
+    let total = this.props.total;
 
     //Check if there are any wrong answers to review.
     let qToReview;
@@ -90,7 +92,7 @@ export default class Stats extends Component {
           category="quiz summary"
         />
         {qToReview}
-        <QuizFooter restart={this.props.restart} />
+        <QuizFooter returnStart={this.props.returnStart} />
       </div>
     );
   }

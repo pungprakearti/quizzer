@@ -30,10 +30,10 @@ export default class QuizFooter extends Component {
 
   render() {
     //if restart
-    if (this.props.restart) {
+    if (this.props.returnStart) {
       return (
         <div className="QuizFooter-cont">
-          <div className="QuizFooter-restart" onClick={this.props.restart}>
+          <div className="QuizFooter-restart" onClick={this.props.returnStart}>
             restart
           </div>
         </div>
