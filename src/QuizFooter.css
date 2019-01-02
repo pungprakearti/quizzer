@@ -20,7 +20,9 @@
   height: 100%;
 }
 
-.QuizFooter-answer {
+.QuizFooter-answer,
+.QuizFooter-summary,
+.QuizFooter-restart {
   width: 100%;
   height: 100%;
   text-transform: uppercase;
@@ -29,7 +31,18 @@
   line-height: 40px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.QuizFooter-answer {
   background-color: rgb(103, 84, 160);
+}
+
+.QuizFooter-summary {
+  background-color: rgb(48, 108, 103);
+}
+
+.QuizFooter-restart {
+  background-color: rgb(39, 133, 170);
 }
 
 .QuizFooter-check {

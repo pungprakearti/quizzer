@@ -4,12 +4,15 @@ import './Stats.css';
 import QuizHeader from './QuizHeader';
 import QuizFooter from './QuizFooter';
 import Review from './Review';
+import Quiz from './Quiz';
 
 export default class Stats extends Component {
   constructor(props) {
     super(props);
     this.state = { showReview: false, q: {} };
     this.showReview = this.showReview.bind(this);
+    this.summary = this.summary.bind(this);
+    this.review = '';
   }
 
   sortQuestions() {
@@ -24,14 +27,29 @@ export default class Stats extends Component {
 
   showReview(q) {
     this.setState({ showReview: true, q });
+    // this.review = <Review q={q} question={this.props.questions[q]} />;
+    this.review = (
+      <Quiz
+        question={this.props.questions[q]}
+        category="Review"
+        // nextQuestion={this.nextQuestion}
+        // wrongAnswer={this.wrongAnswer}
+        summary={this.summary}
+        header={q}
+        qID={q}
+      />
+    );
+  }
+
+  summary() {
+    this.setState({ showReview: false });
   }
 
   render() {
     let questions = this.sortQuestions();
     let total = Object.keys(this.props.questions).length;
     return this.state.showReview ? (
-      'review goes here'
-      <Review />
+      this.review
     ) : (
       <div className="Stats-cont">
         <QuizHeader

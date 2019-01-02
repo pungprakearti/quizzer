@@ -29,6 +29,65 @@ export default class QuizFooter extends Component {
   }
 
   render() {
+    //if restart
+    if (this.props.restart) {
+      return (
+        <div className="QuizFooter-cont">
+          <div className="QuizFooter-restart" onClick={this.props.restart}>
+            restart
+          </div>
+        </div>
+      );
+
+      //if summary
+    } else {
+      if (this.props.summary) {
+        return (
+          <div className="QuizFooter-cont">
+            {this.state.showQuestion ? (
+              <div className="QuizFooter-answer" onClick={this.handleAnswer}>
+                answer
+              </div>
+            ) : (
+              <div className="QuizFooter-summary" onClick={this.props.summary}>
+                summary
+              </div>
+            )}
+          </div>
+        );
+
+        //else quiz
+      } else {
+        return (
+          <div className="QuizFooter-cont">
+            {this.state.showQuestion ? (
+              <React.Fragment>
+                <div className="QuizFooter-answer" onClick={this.handleAnswer}>
+                  answer
+                </div>
+                <div className="QuizFooter-check hide">
+                  <FaCheck />
+                </div>
+                <div className="QuizFooter-x hide">
+                  <FaTimes />
+                </div>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <div className="QuizFooter-answer hide">answer</div>
+                <div className="QuizFooter-check" onClick={this.handleCheck}>
+                  <FaCheck />
+                </div>
+                <div className="QuizFooter-x" onClick={this.handleX}>
+                  <FaTimes />
+                </div>
+              </React.Fragment>
+            )}
+          </div>
+        );
+      }
+    }
+    /*
     if (this.props.restart) {
       return (
         <div className="QuizFooter-cont">
@@ -65,6 +124,6 @@ export default class QuizFooter extends Component {
           )}
         </div>
       );
-    }
+    }*/
   }
 }

@@ -51,14 +51,14 @@ export default class Quizzer extends Component {
       let question = this.questions[this.qOrder[this.state.qNum]];
 
       //if there are still questions
-      return this.state.qNum > this.qOrder.length ? (
+      return this.state.qNum < this.qOrder.length ? (
         <div className="Mobile-cont">
           <Quiz
             question={question}
             category={question.category}
             nextQuestion={this.nextQuestion}
             wrongAnswer={this.wrongAnswer}
-            numRemaining={`${this.state.qNum + 1} / ${this.qOrder.length}`}
+            header={`${this.state.qNum + 1} / ${this.qOrder.length}`}
             qID={this.qOrder[this.state.qNum]}
           />
         </div>
