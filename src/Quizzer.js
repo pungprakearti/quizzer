@@ -1,28 +1,20 @@
 import React, { Component } from 'react';
 import Quiz from './Quiz';
-import parseQuestions, { shuffle } from './parseQuestions';
 import Stats from './Stats';
 
 export default class Quizzer extends Component {
   constructor(props) {
     super(props);
-    this.questions = {};
-    this.qQrder = [];
+    this.questions = this.props.questions;
+    this.qOrder = this.props.qOrder;
     this.currCorrect = 0;
-    this.state = { loading: true, qNum: 0 };
+    this.state = { loading: false, qNum: 0 };
     this.nextQuestion = this.nextQuestion.bind(this);
     this.wrongAnswer = this.wrongAnswer.bind(this);
-    this.restart = this.restart.bind(this);
     this.correctAnswer = this.correctAnswer.bind(this);
   }
 
   componentDidMount() {
-    //create POJO from questions data
-    this.questions = parseQuestions();
-
-    //shuffle keys and store
-    this.qOrder = shuffle(Object.keys(this.questions));
-
     this.setState({ loading: false });
   }
 
@@ -43,41 +35,26 @@ export default class Quizzer extends Component {
     this.nextQuestion();
   }
 
-  restart() {
-    //shuffle keys and store
-    this.qOrder = shuffle(Object.keys(this.questions));
-    this.setState({ qNum: 0 });
-    this.currCorrect = 0;
-  }
-
   render() {
-    if (!this.state.loading) {
-      let question = this.questions[this.qOrder[this.state.qNum]];
+    let question = this.props.questions[this.props.qOrder[this.state.qNum]];
 
-      //if there are still questions
-      return this.state.qNum < this.qOrder.length ? (
-        <div className="Mobile-cont">
-          <Quiz
-            question={question}
-            category={question.category}
-            correctAnswer={this.correctAnswer}
-            wrongAnswer={this.wrongAnswer}
-            header={`${this.state.qNum + 1} / ${this.qOrder.length}`}
-            qID={this.qOrder[this.state.qNum]}
-          />
-        </div>
-      ) : (
-        <div className="Mobile-cont">
-          <Stats
-            questions={this.questions}
-            currCorrect={this.currCorrect}
-            restart={this.restart}
-          />
-        </div>
-      );
-    } else {
-      console.log('loading');
-      return 'Loading';
-    }
+    //if there are still questions
+    return this.state.qNum < this.props.qOrder.length ? (
+      <Quiz
+        question={question}
+        category={question.category}
+        correctAnswer={this.correctAnswer}
+        wrongAnswer={this.wrongAnswer}
+        header={`${this.state.qNum + 1} / ${this.qOrder.length}`}
+        qID={this.qOrder[this.state.qNum]}
+      />
+    ) : (
+      <Stats
+        questions={this.props.questions}
+        total={this.qOrder.length}
+        currCorrect={this.currCorrect}
+        returnStart={this.props.returnStart}
+      />
+    );
   }
 }
