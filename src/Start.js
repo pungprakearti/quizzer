@@ -7,9 +7,7 @@ import './Start.css';
 export default class Start extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { show: '' };
-
+    this.state = { show: 'start' };
     this.handleClick = this.handleClick.bind(this);
     this.returnStart = this.returnStart.bind(this);
   }
@@ -23,8 +21,14 @@ export default class Start extends Component {
   }
 
   returnStart() {
+    //create POJO from questions data
+    this.questions = parseQuestions();
+
+    //shuffle keys and store
+    this.qOrder = shuffle(Object.keys(this.questions));
+
     this.setState({
-      show: ''
+      show: 'start'
     });
   }
 
@@ -58,6 +62,7 @@ export default class Start extends Component {
             qOrder={this.qOrder}
             newQuestions={this.newQuestions}
             questions={this.questions}
+            returnStart={this.returnStart}
           />
         )
       });
@@ -78,7 +83,7 @@ export default class Start extends Component {
   render() {
     return (
       <div className="Mobile-cont">
-        {!this.state.show ? (
+        {this.state.show === 'start' ? (
           <div className="Start-cont">
             <div className="Start-header">Web Development Quizzer</div>
             <div
@@ -118,9 +123,5 @@ export default class Start extends Component {
         )}
       </div>
     );
-
-    // return this.state.show;
   }
 }
-
-//style={{ backgroundColor: 'rgb(150, 105, 66)'}}

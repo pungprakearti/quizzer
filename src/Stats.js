@@ -42,9 +42,7 @@ export default class Stats extends Component {
   }
 
   render() {
-    console.log(this.props);
     let questions = this.sortQuestions();
-    // let total = Object.keys(this.props.questions).length;
     let total = this.props.total;
 
     //Check if there are any wrong answers to review.
