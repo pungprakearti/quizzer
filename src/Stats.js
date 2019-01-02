@@ -3,7 +3,6 @@ import QLink from './QLink';
 import './Stats.css';
 import QuizHeader from './QuizHeader';
 import QuizFooter from './QuizFooter';
-import Review from './Review';
 import Quiz from './Quiz';
 
 export default class Stats extends Component {
@@ -27,13 +26,10 @@ export default class Stats extends Component {
 
   showReview(q) {
     this.setState({ showReview: true, q });
-    // this.review = <Review q={q} question={this.props.questions[q]} />;
     this.review = (
       <Quiz
         question={this.props.questions[q]}
         category="Review"
-        // nextQuestion={this.nextQuestion}
-        // wrongAnswer={this.wrongAnswer}
         summary={this.summary}
         header={q}
         qID={q}
@@ -48,14 +44,11 @@ export default class Stats extends Component {
   render() {
     let questions = this.sortQuestions();
     let total = Object.keys(this.props.questions).length;
-    return this.state.showReview ? (
-      this.review
-    ) : (
-      <div className="Stats-cont">
-        <QuizHeader
-          header={`${this.props.currCorrect} / ${total}`}
-          category="quiz summary"
-        />
+
+    //Check if there are any wrong answers to review.
+    let qToReview;
+    if (questions.length > 0) {
+      qToReview = (
         <div className="Stats-review-cont">
           Questions to review
           <br />
@@ -72,6 +65,31 @@ export default class Stats extends Component {
             );
           })}
         </div>
+      );
+
+      //No wrong answers, time to apply for more jobs!
+    } else {
+      qToReview = (
+        <div className="Mobile-border" style={{ flexDirection: 'column' }}>
+          <div style={{ fontSize: '50px', fontWeight: 'bold' }}>100%</div>
+          <br />
+          You're all caught up.
+          <br />
+          <br />
+          Get a job already you bum!
+        </div>
+      );
+    }
+
+    return this.state.showReview ? (
+      this.review
+    ) : (
+      <div className="Stats-cont">
+        <QuizHeader
+          header={`${this.props.currCorrect} / ${total}`}
+          category="quiz summary"
+        />
+        {qToReview}
         <QuizFooter restart={this.props.restart} />
       </div>
     );

@@ -68,8 +68,7 @@ CSRF, XSS, SQL Injection.
 
 What is a JWT?
 A string with a header, payload and signature. Header and payload can be decoded, signature can not - it requires a secret key to be used to sign securely.
-`;
-/*
+
 #SQL
 What is a primary key?
 A constraint that enforces uniqueness.
@@ -261,7 +260,7 @@ Flask is a smaller bare bones framework while Django is more all inclusive.
 What’s an ORM? Which one have we used?
 Object-relational mapping is is a technique for storing, retrieving, updating, and deleting from an object-oriented program in a relational database. SQLAlchemy is an example of one.
 
-`;*/
+`;
 
 /* Parse text into a POJO */
 

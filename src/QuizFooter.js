@@ -17,7 +17,7 @@ export default class QuizFooter extends Component {
   }
 
   handleCheck() {
-    this.props.nextQuestion();
+    this.props.correctAnswer(this.props.qID);
     this.setState({ showQuestion: true });
     this.props.toggleAnswer();
   }

@@ -32,7 +32,7 @@ export default class Quiz extends Component {
           )}
         </div>
         <QuizFooter
-          nextQuestion={this.props.nextQuestion}
+          correctAnswer={this.props.correctAnswer}
           toggleAnswer={this.toggleAnswer}
           wrongAnswer={this.props.wrongAnswer}
           summary={this.props.summary}
