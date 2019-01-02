@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Quiz from './Quiz';
 import parseQuestions, { shuffle } from './parseQuestions';
-// import QuizHeader from './QuizHeader';
-// import QuizFooter from './QuizFooter';
 import Stats from './Stats';
 
 export default class Quizzer extends Component {
@@ -15,6 +13,7 @@ export default class Quizzer extends Component {
     this.nextQuestion = this.nextQuestion.bind(this);
     this.wrongAnswer = this.wrongAnswer.bind(this);
     this.restart = this.restart.bind(this);
+    this.correctAnswer = this.correctAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -29,14 +28,19 @@ export default class Quizzer extends Component {
 
   nextQuestion() {
     this.setState(st => ({ qNum: st.qNum + 1 }));
+  }
+
+  correctAnswer(qID) {
+    if (localStorage[qID]) localStorage.setItem(qID, +localStorage[qID] - 1);
+    if (localStorage[qID] <= 0) localStorage.removeItem(qID);
     this.currCorrect++;
+    this.nextQuestion();
   }
 
   wrongAnswer(qID) {
     if (localStorage[qID]) localStorage.setItem(qID, +localStorage[qID] + 1);
     else localStorage.setItem(qID, 1);
     this.nextQuestion();
-    this.currCorrect--;
   }
 
   restart() {
@@ -56,7 +60,7 @@ export default class Quizzer extends Component {
           <Quiz
             question={question}
             category={question.category}
-            nextQuestion={this.nextQuestion}
+            correctAnswer={this.correctAnswer}
             wrongAnswer={this.wrongAnswer}
             header={`${this.state.qNum + 1} / ${this.qOrder.length}`}
             qID={this.qOrder[this.state.qNum]}
