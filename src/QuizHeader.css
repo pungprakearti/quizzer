@@ -11,8 +11,8 @@
   max-width: 397px;
 }
 
-.QuizHeader-numRemaining {
-  font-size: 40px;
+.QuizHeader-header {
+  font-size: 32px;
   height: 30px;
   line-height: 40px;
   width: 100%;

@@ -2,23 +2,18 @@ import React, { Component } from 'react';
 import QuizHeader from './QuizHeader';
 import QuizFooter from './QuizFooter';
 
-export default class Quiz extends Component {
+export default class Review extends Component {
   constructor(props) {
     super(props);
     this.state = { showQuestion: true };
-    this.toggleAnswer = this.toggleAnswer.bind(this);
   }
-
-  toggleAnswer() {
-    if (this.state.showQuestion) this.setState({ showQuestion: false });
-    else this.setState({ showQuestion: true });
-  }
-
   render() {
+    console.log(this.props);
     return (
-      <React.Fragment>
-        <QuizHeader category={this.props.category} header={this.props.header} />
-        <div className="Mobile-border">
+      <div className="Stats-cont">
+        <QuizHeader header={this.props.q} category="Review" />
+        <div className="Stats-review-cont">
+          {/* <div className="Mobile-border"> */}
           {this.state.showQuestion ? (
             <React.Fragment>
               <div className="Quiz-question">{this.props.question.q}</div>
@@ -30,15 +25,10 @@ export default class Quiz extends Component {
               <div className="Quiz-answer">{this.props.question.a}</div>
             </React.Fragment>
           )}
+          {/* </div> */}
         </div>
-        <QuizFooter
-          nextQuestion={this.props.nextQuestion}
-          toggleAnswer={this.toggleAnswer}
-          wrongAnswer={this.props.wrongAnswer}
-          summary={this.props.summary}
-          qID={this.props.qID}
-        />
-      </React.Fragment>
+        <QuizFooter />
+      </div>
     );
   }
 }

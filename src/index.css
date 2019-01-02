@@ -2,6 +2,8 @@
 
 html {
   background-color: black;
+  min-height: 100vh;
+  height: 100%;
 }
 
 body {
@@ -14,6 +16,8 @@ body {
   background-color: black;
   color: rgb(237, 237, 237);
   overflow: hidden;
+  min-height: 100vh;
+  height: 100%;
 }
 
 code {
@@ -22,7 +26,8 @@ code {
 }
 
 .Mobile-cont {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 100vw;
   box-sizing: border-box;
   padding: 20px;

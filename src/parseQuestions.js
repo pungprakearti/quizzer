@@ -1,4 +1,4 @@
-const uuid = require('uuid/v4');
+// const uuid = require('uuid/v4');
 
 const questionsText = `#JavaScript
 What is the difference between map and filter?
@@ -68,7 +68,8 @@ CSRF, XSS, SQL Injection.
 
 What is a JWT?
 A string with a header, payload and signature. Header and payload can be decoded, signature can not - it requires a secret key to be used to sign securely.
-
+`;
+/*
 #SQL
 What is a primary key?
 A constraint that enforces uniqueness.
@@ -260,7 +261,7 @@ Flask is a smaller bare bones framework while Django is more all inclusive.
 What’s an ORM? Which one have we used?
 Object-relational mapping is is a technique for storing, retrieving, updating, and deleting from an object-oriented program in a relational database. SQLAlchemy is an example of one.
 
-`;
+`;*/
 
 /* Parse text into a POJO */
 
@@ -268,6 +269,7 @@ export default function parseQuestions() {
   const qArray = questionsText.split('\n');
   let questions = {};
   let currCat = ''; //current category while reading through text
+  let keyIncrement = {};
   let getQuestion = true; //get question or answer
   let q = '';
   let a = '';
@@ -293,10 +295,36 @@ export default function parseQuestions() {
     }
     //form an entry into questions
     if (q && a) {
-      questions = { ...questions, [uuid()]: { q, a, category: currCat } };
+      //
+      //create key for entry using category
+      if (!keyIncrement[currCat]) keyIncrement[currCat] = 1;
+      else keyIncrement[currCat]++;
+      questions = {
+        ...questions,
+        [`${currCat}-${keyIncrement[currCat]}`]: { q, a, category: currCat }
+      };
       q = '';
       a = '';
     }
   }
   return questions;
+}
+
+/* returns a new shuffled array */
+export function shuffle(arr) {
+  let shuffledArr = [];
+  let randIndex = 0;
+
+  while (arr.length > 0) {
+    //
+    //get a random int within the array
+    randIndex = Math.floor(Math.random() * arr.length);
+
+    //add random array entry to new array
+    shuffledArr.push(arr[randIndex]);
+
+    //remove entry from original array
+    arr.splice(randIndex, 1);
+  }
+  return shuffledArr;
 }
