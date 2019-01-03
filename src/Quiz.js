@@ -17,7 +17,11 @@ export default class Quiz extends Component {
   render() {
     return (
       <React.Fragment>
-        <QuizHeader category={this.props.category} header={this.props.header} />
+        <QuizHeader
+          category={this.props.category}
+          header={this.props.header}
+          returnStart={this.props.returnStart}
+        />
         <div className="Mobile-border">
           {this.state.showQuestion ? (
             <React.Fragment>
