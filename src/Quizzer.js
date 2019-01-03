@@ -47,6 +47,7 @@ export default class Quizzer extends Component {
         wrongAnswer={this.wrongAnswer}
         header={`${this.state.qNum + 1} / ${this.qOrder.length}`}
         qID={this.qOrder[this.state.qNum]}
+        returnStart={this.props.returnStart}
       />
     ) : (
       <Stats

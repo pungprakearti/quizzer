@@ -29,7 +29,7 @@ export default class Stats extends Component {
     this.review = (
       <Quiz
         question={this.props.questions[q]}
-        category="Review"
+        category="review"
         summary={this.summary}
         header={q}
         qID={q}
