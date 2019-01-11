@@ -1,10 +1,11 @@
 .Stats-cont {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
   box-sizing: border-box;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 40px - 40px);
   padding-left: 20px;
   padding-right: 20px;
   width: calc(100vw);
