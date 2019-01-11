@@ -157,7 +157,7 @@ How do you pass data from two separate Components if the are not in a Parent / C
 Using Redux or Context or by lifting the state up
 
 What are the differences between state and props?
-Props are immutable, state is not.
+Props can't be changed, state can.
 
 What frameworks have you used in conjunction with ReactJS for routing, AJAX calls, and other Model and Controller functionality that is not provided by ReactJS? 
 Axios, React Router, Redux.
